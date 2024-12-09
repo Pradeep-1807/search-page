@@ -9,6 +9,13 @@ import FilterBox from './components/FilterBox'
 function App() {
   const [ searchText, setSearchText ] = useState('')
   const [ dataSource, setDataSource ] = useState(sampleDate)
+  const [ filterValues, setFilterValues ] = useState([
+    { name: 'releasedYear', value: [] },
+    { name: 'ratings', value: [] },
+    { name: 'certificate', value: [] },
+    { name: 'runtime', value: [] },
+    { name: 'genre', value: [] },
+  ]);
   const [ showFilterBox, setShowFilterBox ] = useState(false)
 
   const fetchSearchedContent = ()=>{
@@ -25,13 +32,19 @@ function App() {
   },[searchText])
 
   return (
-    <div className='relative bg-slate-800 min-h-screen min-w-full flex flex-col justify-center items-center px-5 overflow-x-hidden '>
+    <div className='relative font-outfit bg-slate-800 min-h-screen min-w-full flex flex-col justify-center items-center px-5 overflow-x-hidden '>
       <div className='fixed top-16 sm:top-10 left-[50%] -translate-x-[50%] -translate-y-[50%] flex gap-1 justify-center items-center  w-full sm:w-[80%] m-auto px-2'>
         <SearchBar searchText={searchText} setSearchText={setSearchText} />
         <Filter setShowFilterBox={setShowFilterBox} />
         
       </div>
-      <FilterBox showFilterBox={showFilterBox} setShowFilterBox={setShowFilterBox} />
+      <FilterBox 
+        showFilterBox={showFilterBox} 
+        setShowFilterBox={setShowFilterBox}
+        filterValues={filterValues}
+        setFilterValues={setFilterValues}
+        setDataSource={setDataSource} />
+        
       <div className='mt-24  lg:mt-10'>
       {
         dataSource.slice(0,100).map((content,index)=> <div key={index}><ContentCard content={content} /></div> )

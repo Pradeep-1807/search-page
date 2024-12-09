@@ -1,5 +1,4 @@
 import React from 'react'
-import sampleData from '../sampleData.js'
 
 const ContentCard = ({content}) => {
 
@@ -12,6 +11,8 @@ const ContentCard = ({content}) => {
 
         <h2 className="mt-2 text-xl font-semibold text-gray-800 dark:text-white md:mt-0 inline-block">{content.Series_Title}</h2>
         <span className='font-semibold ml-2 text-white'>({content.Certificate})</span>
+        <span className='font-semibold ml-2 text-red-600'>{content.IMDB_Rating}</span>
+
         <p className="mt-2 text-sm text-gray-600 dark:text-gray-200">{content.Overview}</p>
         <p className='mt-4 text-sm text-gray-400 dark:text-gray-200 font-bold inline-block w-auto'>{content.Genre}</p>
         <span className='ml-2 text-white font-bold'>|</span>
